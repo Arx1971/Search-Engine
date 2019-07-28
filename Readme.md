@@ -73,3 +73,32 @@ Phases 1, one clicks a button to index selected items.
 Note: for this and the other “Admin” screens, no special authentication (login) is required. It can be assumed that all users
 have rights to use these functions.
 </p>
+
+<h2>Search Entry</h2>
+
+<p>
+	This is the screen in which a user types a search term(s) and clicks Search, then waits for results. Since there is
+ambiguity as how a user intends to search, ideally these should be handled by explicit options on the screen (using radio
+buttons or checkboxes), such as
+	<ul>
+		<li>Case-Insensitive</li>
+		<li>Allow Partial match</li>
+	</ul>
+
+	This fundamental query will drive the search:
+
+	SELECT *
+FROM page, word, page_word
+WHERE page.pageId = page_word.pageId
+AND word.wordId = page_word.wordId
+AND word.wordName = ‘​ wordEntered ​ ‘
+ORDER BY freq desc <br>
+where ​ wordEntered​ is the search word entered in the search box.
+For case-insensitive, change the last line in where clause to (something like)
+AND Upper(word.wordName) = Upper(wordEntered)For allow partial match, change the last line in where clause to
+AND word.wordName LIKE ‘%wordEntered%’
+If both options are checked, you will need to combine the two modifications.
+It may be assumed that the user will enter only one search word at a time. Handling of multiple terms is left as an
+“advanced feature” for extra credit .
+
+</p>
