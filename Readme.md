@@ -103,3 +103,20 @@ It may be assumed that the user will enter only one search word at a time. Handl
 “advanced feature” for extra credit .
 
 </p>
+
+<h2>Search Results and Download</h2>
+
+<p>
+	The query in the previous section should be sent to the database. One iterates through the database results (in a way
+similar to how one iterated through the contents of the JSON, CSV, and XML files or the Google search) and build and
+display a set of results.
+The same download feature available in Phase 1 should also be available in Phase 2 (checkboxes, Select/Deselect All,
+Save As JSON/XML/CSV).
+</p>
+
+<h2>
+	Admin: Search History and Stats
+</h2>
+<p>
+	Present a list of all user searches, the terms, number of search results, and how long they took.
+</p>
