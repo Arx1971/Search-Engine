@@ -87,17 +87,14 @@ buttons or checkboxes), such as
 
 	This fundamental query will drive the search:
 
-	<ul>
-	SELECT *
-FROM page, word, page_word
-WHERE page.pageId = page_word.pageId
-AND word.wordId = page_word.wordId
-AND word.wordName = ‘​ wordEntered ​ ‘
-ORDER BY freq desc 
+	*SELECT *
+	FROM page, word, page_word
+	WHERE page.pageId = page_word.pageId
+	AND word.wordId = page_word.wordId
+	AND word.wordName = ‘​ wordEntered ​ ‘
+	ORDER BY freq desc* 
 
-	</ul>
-
-	where ​ wordEntered​ is the search word entered in the search box.
+where ​ wordEntered​ is the search word entered in the search box.
 For case-insensitive, change the last line in where clause to (something like)
 AND Upper(word.wordName) = Upper(wordEntered)For allow partial match, change the last line in where clause to
 AND word.wordName LIKE ‘%wordEntered%’
