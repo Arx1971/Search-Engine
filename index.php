@@ -167,32 +167,6 @@ function parsePage( $target, $referer ) {
 		die( "Error: Unable to perform Insert Query\n" );
 	}
 
-
-	/*------------------ Insertion for Page Table: ----------------------*/
-		$url = $url_path;
-
-		$lastIndexed = date("Y/m/d");
-		$timeToIndex = date("h:i:sa");
-		$lastModified = "";
-
-
-		echo "<tr>";
-      echo "<td>" . $url . "</td>";
-      echo "<td>" . $title. "</td>";
-      echo "<td>" . $description . "</td>";
-      echo "<td>" . $lastIndexed . "</td>";
-      echo "<td>" . $lastModified . "</td>";
-      echo "<td>" . $timeToIndex . "</td>";
-      echo "</tr>";
-
-		$sql = "INSERT INTO page (url, title, description, lastModified, lastIndexed, timeToindex)VALUES('".$url. "','".$title."','".$description."','".$lastModified."','".$lastIndexed."','".$timeToIndex."') ";
-		if( !mysqli_query($mysql_conn, $sql) ) {
-			die( "Error: Unable to perform Insert Query, Page Table\n" );
-		}
-
-	/*---------------------Page table Script END-------------------------*/
-
-
 	//Get Links
 	$links = Array();
 	$link_tags = $doc->getElementsByTagName( 'a' );

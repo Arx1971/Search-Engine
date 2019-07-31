@@ -13,6 +13,8 @@
   $result = mysqli_query($con,$query);
   echo "<table border='1'><tr><th>URL</th><th>Title</th><th>Description</th><th>lastIndexed</th><th>lastModified</th><th>timeToindex</th></tr>";
 
+  $wordid = 1;
+
   while($row = mysqli_fetch_assoc($result))
   {
     $datetime = $row['download_time'];
@@ -47,8 +49,10 @@
 
      $text = substr($text, 0, -4);
 
-     $sql = "INSERT INTO word(wordName) VALUES ('".$text. "')";
-      mysqli_query($con, $sql);
+     $sql = "INSERT INTO word(word_id, wordName) VALUES ('".$wordid. "','".$text."')";
+      if(mysqli_query($con, $sql)){
+      	$wordid++;
+      }
 
     }
 
