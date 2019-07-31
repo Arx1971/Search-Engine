@@ -5,7 +5,7 @@ CREATE TABLE page(
     description text,
     lastModified date,
     lastIndexed date,
-    timeToindex date,
+    timeToindex time,
     PRIMARY KEY(page_id)
 );
 
@@ -13,9 +13,11 @@ CREATE TABLE page(
 
 CREATE TABLE word(
     word_id int AUTO_INCREMENT,
-    wordName varchar(512),
-    PRIMARY KEY(word_id)
+    wordName varchar(512) NOT NULL,
+    primary KEY(word_id),
+    UNIQUE (wordName)
 );
+
 
 /*----------*/
 

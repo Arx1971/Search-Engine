@@ -8,21 +8,22 @@
 
  
 
-  $query = ("SELECT referer, title, description from pages");
+  $query = ("SELECT referer, title, description, download_time from pages");
 
   $result = mysqli_query($con,$query);
   echo "<table border='1'><tr><th>URL</th><th>Title</th><th>Description</th><th>lastIndexed</th><th>lastModified</th><th>timeToindex</th></tr>";
 
   while($row = mysqli_fetch_assoc($result))
   {
-
-    $lastIndexed = date("Y/m/d");
-    $timeToIndex = date('H:i:s');
+    $datetime = $row['download_time'];
+    $lastIndexed = date('Y-m-d', strtotime($datetime));
+    $timeToIndex = date('H:i:s', strtotime($datetime));
     $lastModified = date("Y/m/d");
 
     $url = $row['referer'];
     $title = $row['title'];
     $description = $row['description'];
+    $downloadtime = $row['download_time'];
     if(is_null($url) || is_null($title) || is_null($description)){
 
     }
@@ -40,10 +41,16 @@
 
       if (!mysqli_query($con, $sql)) {
         
-      } 
-    }
+      }
 
-   
+     $text = str_ireplace('www.', '', parse_url($url, PHP_URL_HOST));
+
+     $text = substr($text, 0, -4);
+
+     $sql = "INSERT INTO word(wordName) VALUES ('".$text. "')";
+      mysqli_query($con, $sql);
+
+    }
 
   }
   echo "</table>";
