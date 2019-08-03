@@ -20,7 +20,6 @@
     $datetime = $row['download_time'];
     $lastIndexed = date('Y-m-d', strtotime($datetime));
     $timeToIndex = date('H:i:s', strtotime($datetime));
-    $lastModified = date("Y/m/d");
 
     $url = $row['referer'];
     $title = $row['title'];
@@ -38,21 +37,30 @@
       echo "<td>" . $lastModified . "</td>";
       echo "<td>" . $timeToIndex . "</td>";
       echo "</tr>";
+      $lastModified = date( "F d Y H:i:s.", getlastmod() );
+
        $sql = "INSERT INTO page (url, title, description, lastModified, lastIndexed, timeToindex)VALUES
     ('".$url. "','".$title."','".$description."','".$lastModified."','".$lastIndexed."','".$timeToIndex."') ";
+
+
+    	$slice = explode(" ", $title);
 
       if (!mysqli_query($con, $sql)) {
         
       }
 
-     $text = str_ireplace('www.', '', parse_url($url, PHP_URL_HOST));
+    /* $text = str_ireplace('www.', '', parse_url($url, PHP_URL_HOST));
 
      $text = substr($text, 0, -4);
+*/		
+     	foreach ($slice as $wordName) {
+     	
+     	 	$sql = "INSERT INTO word(word_id, wordName) VALUES ('".$wordid. "','".$wordName."')";
+      		if(mysqli_query($con, $sql)){
+      			$wordid++;
+      		}	
 
-     $sql = "INSERT INTO word(word_id, wordName) VALUES ('".$wordid. "','".$text."')";
-      if(mysqli_query($con, $sql)){
-      	$wordid++;
-      }
+     	}
 
     }
 
