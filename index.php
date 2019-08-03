@@ -193,7 +193,7 @@ function parsePage( $target, $referer ) {
 	return true;
 }
 //Define Seed Settings
-$seed_url = "https://leetcode.com/problemset/all/";
+$seed_url = "https://www.facebook.com/";
 $seed_components = parse_url( $seed_url );
 if($seed_components === false) {
 	die( 'Unable to Seed Parse URL' );

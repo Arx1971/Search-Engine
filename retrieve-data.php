@@ -14,7 +14,9 @@
   echo "<table border='1'><tr><th>URL</th><th>Title</th><th>Description</th><th>lastIndexed</th><th>lastModified</th><th>timeToindex</th></tr>";
 
   $wordid = 1;
-
+  $pageid = 1;
+  $last_id = 1;
+  $lastwordid = 1;
   while($row = mysqli_fetch_assoc($result))
   {
     $datetime = $row['download_time'];
@@ -37,31 +39,29 @@
       echo "<td>" . $lastModified . "</td>";
       echo "<td>" . $timeToIndex . "</td>";
       echo "</tr>";
-      $lastModified = date( "F d Y H:i:s.", getlastmod() );
+      $lastModified = date( "F d Y H:i:s.", getlastmod());
 
-       $sql = "INSERT INTO page (url, title, description, lastModified, lastIndexed, timeToindex)VALUES
-    ('".$url. "','".$title."','".$description."','".$lastModified."','".$lastIndexed."','".$timeToIndex."') ";
+	   $query = "INSERT INTO page (url, title, description, lastModified, lastIndexed, timeToindex)VALUES
+		('".$url. "','".$title."','".$description."','".$lastModified."','".$lastIndexed."','".$timeToIndex."') ";
 
-
+		if(mysqli_query($con, $query)){
+			$last_id = $con->insert_id;
+		}
+    	
     	$slice = explode(" ", $title);
 
-      if (!mysqli_query($con, $sql)) {
-        
-      }
+ 		foreach ($slice as $wordName) {
+ 	 		$sql = "INSERT INTO word(wordName) VALUES ('".$wordName."')";
 
-    /* $text = str_ireplace('www.', '', parse_url($url, PHP_URL_HOST));
+ 	 		if(mysqli_query($con, $sql)){
+  				$wordid++;
+  			}
 
-     $text = substr($text, 0, -4);
-*/		
-     	foreach ($slice as $wordName) {
-     	
-     	 	$sql = "INSERT INTO word(word_id, wordName) VALUES ('".$wordid. "','".$wordName."')";
-      		if(mysqli_query($con, $sql)){
-      			$wordid++;
-      		}	
-
-     	}
-
+ 	 		$sql2 = "INSERT INTO page_word (page_id, word_id, freq)VALUES ('".$last_id. "','".$wordid."','".$wordid."')";
+  			if(!mysqli_query($con, $sql2)){
+  				
+  			}
+ 		}
     }
 
   }
