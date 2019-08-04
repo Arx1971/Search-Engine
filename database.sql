@@ -41,3 +41,20 @@ CREATE TABLE search(
     timeTosearch time,
     PRIMARY KEY(searchid)
 );
+
+/*-------------*/
+
+delete from page_word;
+delete from page;
+DELETE from word;
+DELETE from pages;
+
+
+/*--------------*/
+
+SELECT * 
+FROM page, word, page_word 
+WHERE page.page_id = page_word.page_id 
+AND word.wordName = page_word.word_id 
+AND word.wordName = 'job'
+ORDER BY freq DESC
