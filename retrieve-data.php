@@ -59,10 +59,6 @@
   				$sql2 = "INSERT INTO page_word (page_id, word_id, freq)VALUES ('".$last_id. "','".$wordid."','".$wordid."')";
   				mysqli_query($con, $sql2);
   			}
- 	 		/*$sql2 = "INSERT INTO page_word (page_id, word_id, freq)VALUES ('".$last_id. "','".$wordid."','".$wordid."')";
-  			if(!mysqli_query($con, $sql2)){
-  				echo "Fucked Up";
-  			}*/
  		}
     }
 

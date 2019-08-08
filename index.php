@@ -193,7 +193,7 @@ function parsePage( $target, $referer ) {
 	return true;
 }
 //Define Seed Settings
-$seed_url = "https://leetcode.com/";
+$seed_url = $_REQUEST['seed_url'] ;
 $seed_components = parse_url( $seed_url );
 if($seed_components === false) {
 	die( 'Unable to Seed Parse URL' );
