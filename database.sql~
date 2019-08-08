@@ -3,9 +3,9 @@ CREATE TABLE page(
     url text,
     title text,
     description text,
-    lastModified date,
+    lastModified text,
     lastIndexed date,
-    timeToindex date,
+    timeToindex time,
     PRIMARY KEY(page_id)
 );
 
@@ -13,9 +13,11 @@ CREATE TABLE page(
 
 CREATE TABLE word(
     word_id int AUTO_INCREMENT,
-    wordName varchar(512),
-    PRIMARY KEY(word_id)
+    wordName varchar(512) NOT NULL,
+    primary KEY(word_id),
+    UNIQUE (wordName)
 );
+
 
 /*----------*/
 
@@ -39,3 +41,20 @@ CREATE TABLE search(
     timeTosearch time,
     PRIMARY KEY(searchid)
 );
+
+/*-------------*/
+
+delete from page_word;
+delete from page;
+DELETE from word;
+DELETE from pages;
+
+
+/*--------------*/
+
+SELECT * 
+FROM page, word, page_word 
+WHERE page.page_id = page_word.page_id 
+AND word.wordName = page_word.word_id 
+AND word.wordName = 'Bounty'
+ORDER BY freq DESC

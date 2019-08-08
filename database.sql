@@ -3,7 +3,7 @@ CREATE TABLE page(
     url text,
     title text,
     description text,
-    lastModified date,
+    lastModified text,
     lastIndexed date,
     timeToindex time,
     PRIMARY KEY(page_id)
