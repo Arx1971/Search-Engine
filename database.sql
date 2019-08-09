@@ -55,6 +55,6 @@ DELETE from pages;
 SELECT * 
 FROM page, word, page_word 
 WHERE page.page_id = page_word.page_id 
-AND word.wordName = page_word.word_id 
+AND word.word_id = page_word.word_id 
 AND word.wordName = 'Bounty'
 ORDER BY freq DESC
