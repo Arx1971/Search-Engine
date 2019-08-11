@@ -4,13 +4,17 @@
 	<title>Search Engine</title>
 </head>
 <body>
-	<form method="post" action="index.php">
-        <p>
-            <label>Indexer
-                <textarea name="seed_url" maxlength="500"></textarea>
-            </label>
-        </p>
-        <p><button>Index</button></p>
-    </form>
+
+	<form action="crawler.php" method="post">
+		Enter The URL:  <input type="text" name="indexer">
+		<input type="submit">
+	</form>
+
+
+	<form action="search-result.php" method="post">
+		Enter A keyWord <input type="text" name="search">
+		<input type="submit">
+	</form>
+
 </body>
 </html>

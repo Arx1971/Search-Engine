@@ -1,12 +1,10 @@
 <?php
-  $con=mysqli_connect("localhost","root","","phpCrawlerTutorial");
+  $con=mysqli_connect("149.4.211.180","ramd2811","23472811","ramd2811");
 
   if (mysqli_connect_errno())
   {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-
- 
 
   $query = ("SELECT referer, title, description, download_time from pages");
 
@@ -54,17 +52,20 @@
  	 		$sql = "INSERT INTO word(wordName) VALUES ('".$wordName."')";
 
  	 		if(mysqli_query($con, $sql)){
+
   				$wordid = $con->insert_id;
-  				echo $wordid."----++++----".$last_id."<br>";
-  				$sql2 = "INSERT INTO page_word (page_id, word_id, freq)VALUES ('".$last_id. "','".$wordid."','".$wordid."')";
+  				
+          $sql2 = "INSERT INTO page_word (page_id, word_id, freq)VALUES ('".$last_id. "','".$wordid."','".$wordid."')";
+
   				mysqli_query($con, $sql2);
   			}
  		}
-    }
-
   }
-  echo "</table>";
 
-  mysqli_close($con);
+}
+echo "</table>";
+
+mysqli_close($con);
+
 ?> 
 
