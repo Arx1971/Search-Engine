@@ -1,8 +1,8 @@
 <?php 
-$mysql_host = '149.4.211.180';
-$mysql_username = 'ramd2811';
-$mysql_password = '23472811';
-$mysql_database = 'ramd2811';
+$mysql_host = '';
+$mysql_username = '';
+$mysql_password = '';
+$mysql_database = '';
 $mysql_conn = mysqli_connect( $mysql_host, $mysql_username, $mysql_password, $mysql_database );
 if ( !$mysql_conn ) {
 	echo "Error: Unable to connect to MySQL." . PHP_EOL;
@@ -201,8 +201,8 @@ $url_start = $seed_scheme. '://'. $seed_host;
 //Download Seed URL
 parsePage( $seed_url, "" );
 //Loop through all pages on site.
-$temp = 0;
-while($temp <= 5) {
+
+while(1) {
 	$counter = 0;
 	$select_query = "SELECT * FROM pages WHERE download_time IS NULL";
 	if(($select_result = mysqli_query( $mysql_conn, $select_query )) !== false) {
@@ -232,7 +232,6 @@ while($temp <= 5) {
 	if($counter == 0) {
 		break;
 	}
-	$temp++;
 }
 
 ?>

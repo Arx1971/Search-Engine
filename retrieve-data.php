@@ -1,5 +1,5 @@
 <?php
-  $con=mysqli_connect("149.4.211.180","ramd2811","23472811","ramd2811");
+  $con=mysqli_connect("","","","");
 
   if (mysqli_connect_errno())
   {

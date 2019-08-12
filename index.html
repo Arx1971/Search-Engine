@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html>
+<style >
+	
+</style>
 <head>
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<title>Search Engine</title>
+
 </head>
 <body>
 
-	<form action="crawler.php" method="post">
-		Enter The URL:  <input type="text" name="indexer">
-		<input type="submit">
-	</form>
+	<div class = "megatron">
+		
+	  	<form action="crawler.php" method="post">
+			Enter The URL:  <input type="text" name="indexer">
+			<input type="submit">
+		</form>
 
+		<form action="retrieve-data.php" method="post">
+			Store Search Result: 
+			<input type="submit">
+		</form>	
 
-	<form action="search-result.php" method="post">
-		Enter A keyWord <input type="text" name="search">
-		<input type="submit">
-	</form>
+		<form action="search-result.php" method="post">
+			Enter A keyWord <input type="text" name="search">
+			<input type="submit">
+		</form>
 
+	</div>
+    
 </body>
 </html>
+
